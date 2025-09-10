@@ -13,6 +13,30 @@ in your `readme` feel free to replace the text we've provided here.
 
 > Own it & Make it your Own!
 
+## Setup GitHub API (Local Development)
+
+This project uses the GitHub REST API to fetch repository data.
+Each developer needs to create their own personal access token and store it in a local environment file.
+
+### 1. Create a GitHub Token
+
+1. Go to GitHub → **Settings → Developer settings → Personal Access Tokens → Tokens (classic)**.
+2. Click **Generate new token (classic)**.
+3. Select scopes:
+   - For **public repos** → no scopes required.
+   - For **private repos** → check  `repo`.
+4. Copy your token and keep it safe.
+
+
+---
+
+### 2. Add token to `.env.local`
+
+Create a `.env.local` file in the root of the project:
+
+```env
+GITHUB_TOKEN=ghp_yourtokenhere
+
 ## Team Documents
 
 You may find these helpful as you work together to organize your project.
