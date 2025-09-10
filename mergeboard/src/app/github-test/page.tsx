@@ -1,6 +1,4 @@
-"use client"
-
-import { useEffect, useState } from "react";
+import { getRepos } from "../actions/getRepos";
 
 
 interface Repo {
@@ -8,14 +6,8 @@ interface Repo {
   name: string;
 }
 
-export default function GithubTest() {
-  const [repos, setRepos] = useState<Repo[]>([]);
-
-  useEffect(() => {
-    fetch("/api/github")
-    .then((res)=> res.json())
-    .then((data) =>setRepos(data));
-  }, []);
+export default async function GithubTest() {
+   const repos: Repo[] = await getRepos();
 
   return (
     <div>
