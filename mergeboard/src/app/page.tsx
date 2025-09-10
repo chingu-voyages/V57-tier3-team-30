@@ -4,6 +4,11 @@ export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-center sm:text-left mb-6">
+            Chingu V57 Team 30 Let's Go! <span className="text-foreground">🚀</span>
+          </h1>
+        </div>
         <Image
           className="dark:invert"
           src="/next.svg"
