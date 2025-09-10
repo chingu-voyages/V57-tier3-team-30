@@ -6,7 +6,7 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-center sm:text-left mb-6">
-            Chingu V57 Team 30 Let's Go! <span className="text-foreground">🚀</span>
+            Chingu V57 Team 30 Let&apos;s Go! <span className="text-foreground">🚀</span>
           </h1>
         </div>
         <Image
