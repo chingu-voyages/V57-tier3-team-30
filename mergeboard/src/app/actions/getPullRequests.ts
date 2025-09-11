@@ -1,21 +1,30 @@
 'use server'
 
 import octokit from "."
-
+import { components } from "@octokit/openapi-types";
+type Pull = components["schemas"]["pull-request"]
 const DEFAULTS = {
   owner: "chingu-voyages",
   repo: "V57-tier3-team-30",
-  page: 0,
-  per_page: 0
 }
 
 function getPullRequests({
   owner = DEFAULTS.owner,
   repo = DEFAULTS.repo,
-} = {}) {
-  const pullRequests = octokit.request(`GET /repos/${owner}/${repo}/pulls`, {
-
-  })
+  sort,
+  state,
+  per_page = 10,
+  page = 1,
+}: {
+  owner?: string
+  repo?: string
+  sort?: "created" | "updated" | "popularity" | "long-running"
+  state?: "open" | "closed" | "all"
+  per_page?: number
+  page?: number
+} = {}): Promise<{ data: Pull[] }> {
+  const queryParams = `?sort=${sort}&state=${state}&per_page=${per_page}&page=${page}`
+  const pullRequests = octokit.request(`GET /repos/${owner}/${repo}/pulls${queryParams}`)
   return pullRequests
 }
 
