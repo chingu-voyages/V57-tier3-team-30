@@ -8,7 +8,7 @@ interface Repo {
 
 export default async function GithubTest() {
    const repos: Repo[] = await getRepos();
-
+ 
   return (
     <div>
       <h1>My Github Repos</h1>
