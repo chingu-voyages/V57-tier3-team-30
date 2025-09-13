@@ -36,7 +36,9 @@ const Swatch = ({ color, value }: { color: `bg-${string}`; value: string }) => {
 
   return (
     <div className="flex items-start mb-3 min-w-[215px]">
-      <div className={`w-12 h-12 rounded ${color} mr-3`}></div>
+      <div
+        className={`w-12 h-12 rounded ${color} mr-3  border border-neutral-400`}
+      ></div>
       <div>
         {hasCopiedText ? (
           <p
