@@ -11,7 +11,15 @@ import {
   Subheading1,
   Subheading2,
 } from "../components/typography";
-import { GitMerge, MergeIcon, Smile } from "lucide-react";
+import {
+  GitCommitIcon,
+  GitMerge,
+  GitPullRequestClosedIcon,
+  GitPullRequestIcon,
+  MergeIcon,
+  Smile,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function Page() {
   return (
@@ -63,9 +71,10 @@ export default function Page() {
           </div>
           <section>
             <Subheading2 className="mt-8 mb-3 pb-3 border-b-2 border-neutral-400">
-              Buttons
+              Components
             </Subheading2>
-            <div className="flex gap-4 flex-wrap">
+            <Body1 className="mb-3 font-bold">Buttons</Body1>
+            <div className="flex gap-4 flex-wrap mb-3">
               <Button variant="default">Primary Button</Button>
               <Button variant="secondary">Secondary Button</Button>
               <Button variant="outline">Outline Button</Button>
@@ -84,6 +93,20 @@ export default function Page() {
               <Button className="bg-teal-500 rounded-none text-black hover:bg-teal-600">
                 Custom <Smile />
               </Button>
+            </div>
+            <Body1 className="mb-3 font-bold">Badges</Body1>
+            <div className="mt-3 flex gap-4">
+              <Badge className="bg-primary [&>svg]:size-5 rounded-3xl px-4 py-1">
+                <GitPullRequestIcon />
+                <Body2>Open</Body2>
+              </Badge>
+              <Badge
+                variant="destructive"
+                className="[&>svg]:size-5 rounded-3xl px-4 py-1"
+              >
+                <GitPullRequestClosedIcon />
+                <Body2>Closed</Body2>
+              </Badge>
             </div>
           </section>
         </section>
