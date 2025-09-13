@@ -1,5 +1,6 @@
 import { PageWrapper } from "@/app/components/layouts/PageWrapper";
 import Swatch from "@/app/design-system/components/Swatch";
+import { Button } from "@/components/ui/button";
 import {
   Body1,
   Body2,
@@ -10,6 +11,7 @@ import {
   Subheading1,
   Subheading2,
 } from "../components/typography";
+import { GitMerge, MergeIcon, Smile } from "lucide-react";
 
 export default function Page() {
   return (
@@ -59,6 +61,31 @@ export default function Page() {
             <Caption>Caption - Lorem ipsum dolor sit amet.</Caption>
             <Label>Label - Lorem ipsum dolor sit amet.</Label>
           </div>
+          <section>
+            <Subheading2 className="mt-8 mb-3 pb-3 border-b-2 border-neutral-400">
+              Buttons
+            </Subheading2>
+            <div className="flex gap-4 flex-wrap">
+              <Button variant="default">Primary Button</Button>
+              <Button variant="secondary">Secondary Button</Button>
+              <Button variant="outline">Outline Button</Button>
+              <Button variant="ghost">Ghost Button</Button>
+              <Button variant="link">Link Button</Button>
+              <Button disabled>Disabled Button</Button>
+              <Button variant={"destructive"}>Destructive Button</Button>
+              <Button size={"sm"}>Small Button</Button>
+              <Button size={"lg"}>Large Button</Button>
+              <Button size={"icon"} variant={"secondary"}>
+                <GitMerge />
+              </Button>
+              <Button size={"icon"} variant={"outline"}>
+                <MergeIcon />
+              </Button>
+              <Button className="bg-teal-500 rounded-none text-black hover:bg-teal-600">
+                Custom <Smile />
+              </Button>
+            </div>
+          </section>
         </section>
       </main>
     </PageWrapper>
