@@ -18,14 +18,24 @@ export const Headline = ({
   return <h1 className={`text-4xl font-bold ${className}`}>{children}</h1>;
 };
 
-export const Subheading = ({
+export const Subheading1 = ({
   children,
   className = "",
 }: {
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <h2 className={`text-2xl font-semibold  ${className}`}>{children}</h2>;
+  return <h2 className={`text-3xl font-semibold  ${className}`}>{children}</h2>;
+};
+
+export const Subheading2 = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return <h3 className={`text-2xl font-semibold ${className}`}>{children}</h3>;
 };
 
 export const Body1 = ({
