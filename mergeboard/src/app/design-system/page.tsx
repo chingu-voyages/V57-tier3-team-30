@@ -25,18 +25,18 @@ export default function Page() {
               <Body1 className="mb-3 font-bold">Primary</Body1>
               <div className="flex gap-4 flex-wrap">
                 <Swatch color="bg-primary-green-100" value="#2dba4e" />
-                <Swatch color="bg-primary-black-100" value="#2dba4e" />
-                <Swatch color="bg-primary-black-200" value="#2dba4e" />
-                <Swatch color="bg-primary-white-50  " value="#2dba4e" />
-                <Swatch color="bg-primary-white-100" value="#2dba4e" />
+                <Swatch color="bg-primary-black-100" value="#010409" />
+                <Swatch color="bg-primary-black-200" value="#0D1117" />
+                <Swatch color="bg-primary-white-50" value="#ffffff" />
+                <Swatch color="bg-primary-white-100" value="#fafbfc" />
               </div>
             </div>
             <div className="mb-6">
               <Body1 className="mb-3 font-bold">Secondary</Body1>
               <div className="flex gap-4 flex-wrap">
-                <Swatch color="bg-secondary-green-300" value="#e6f4ea" />
-                <Swatch color="bg-secondary-green-700" value="#e6f4ea" />
-                <Swatch color="bg-secondary-green-900" value="#e6f4ea" />
+                <Swatch color="bg-secondary-green-300" value="#5fed83" />
+                <Swatch color="bg-secondary-green-700" value="#08872b" />
+                <Swatch color="bg-secondary-green-900" value="#104C35" />
               </div>
             </div>
           </div>
