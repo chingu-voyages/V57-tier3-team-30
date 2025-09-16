@@ -2,17 +2,13 @@ import { getPullRequests } from "@/app/actions/getPullRequests";
 import { PageWrapper } from "@/app/components/layouts/PageWrapper";
 import { PullRequest } from "@/app/components/pullRequest";
 import { Headline, Subheading2 } from "@/app/components/typography";
+import { DEFAULT_REPO } from "@/app/constants";
 import { BookMarkedIcon, GitPullRequestArrow } from "lucide-react";
-
-const DEFAULTS = {
-  owner: "chingu-voyages",
-  repo: "V57-tier3-team-30",
-};
 
 export default async function OpenPRsPage() {
   const pulls = await getPullRequests({
-    owner: DEFAULTS.owner,
-    repo: DEFAULTS.repo,
+    owner: DEFAULT_REPO.owner,
+    repo: DEFAULT_REPO.repo,
     state: "open",
   });
 
@@ -24,7 +20,7 @@ export default async function OpenPRsPage() {
       </div>
       <div className="flex items-center gap-1 mb-5">
         <BookMarkedIcon className="inline size-6" />
-        <Subheading2 className="">{`${DEFAULTS.owner}/${DEFAULTS.repo}`}</Subheading2>
+        <Subheading2 className="">{`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}</Subheading2>
       </div>
       <ul className="flex flex-col gap-4">
         {pulls.data.map((pull) => (
