@@ -3,6 +3,10 @@ import Card from "../card";
 import { Body2, Subheading1 } from "../typography";
 import { Button } from "@/components/ui/button";
 import { GitPullRequestIcon } from "lucide-react";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 export const PullRequest = ({
   PRNumber,
@@ -37,7 +41,9 @@ export const PullRequest = ({
       content={
         <div>
           <Body2>Created by {CreatedBy}</Body2>
-          <Body2>Created at {new Date(CreatedAt).toLocaleDateString()}</Body2>
+          <Body2>
+            Created at {dayjs(CreatedAt).utc().format("MMM D, YYYY [at] HH:mm")}
+          </Body2>
           <Body2>Reviewers: {reviewers?.join(", ") || "None"}</Body2>
         </div>
       }
