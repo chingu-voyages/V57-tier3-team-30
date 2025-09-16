@@ -29,7 +29,14 @@ export const PullRequest = ({
       className="w-md"
       title={
         <Subheading1>
-          #{PRNumber}: {title}
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            #{PRNumber}: {title}
+          </a>
         </Subheading1>
       }
       action={
@@ -44,7 +51,12 @@ export const PullRequest = ({
           <Body2>
             Created at {dayjs(CreatedAt).utc().format("MMM D, YYYY [at] HH:mm")}
           </Body2>
-          <Body2>Reviewers: {reviewers?.join(", ") || "None"}</Body2>
+          <Body2 className="">
+            Reviewers:{" "}
+            <span className="font-bold italic">
+              {reviewers?.join(", ") || "None"}
+            </span>
+          </Body2>
         </div>
       }
       footer={
