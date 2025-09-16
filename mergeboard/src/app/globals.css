@@ -1,12 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light mode (default) */
-  /* mode-specific tokens */
-  --bg-light: #ffffff;
-  --fg-light: #010409;
+
 
   /* active tokens (can be referenced throughout the app) */
 
@@ -76,11 +74,9 @@
 }
 
 .dark {
-  --background: oklch(--foreground); 
+  --background: #0D1117; 
   --foreground: oklch(--background); 
-  --color-primary: var(--color-primary-green-100);
-  /* ... other overrides for dark mode ... */
-}
+  /* ... other overrides for dark mode ... */}
 
 @theme inline {
 /* Primary */
@@ -96,7 +92,9 @@
   --color-secondary-green-300: #5fed83;
   --color-secondary-green-700: #08872b;
   --color-secondary-green-900: #104C35;
+
   
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -136,3 +134,11 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+
+
+
+  body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  }
