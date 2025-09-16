@@ -14,7 +14,7 @@ export default async function OpenPRsPage() {
 
   return (
     <PageWrapper>
-      <div className="flex items-center gap-2 mb-8 justify-center">
+      <div className="flex items-center gap-2 mb-24">
         <GitPullRequestArrow />
         <Headline>Open Pull Requests</Headline>
       </div>
@@ -22,7 +22,7 @@ export default async function OpenPRsPage() {
         <BookMarkedIcon className="inline size-6" />
         <Subheading2 className="">{`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}</Subheading2>
       </div>
-      <ul className="flex flex-col gap-4">
+      <ul className="flex gap-8 flex-wrap">
         {pulls.data.map((pull) => (
           <PullRequest
             key={pull.id}

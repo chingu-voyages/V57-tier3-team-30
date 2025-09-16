@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/app/providers/theme-provider";
+import Link from "next/link";
+import { Subheading1 } from "./components/typography";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +30,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <nav className="px-6  md:px-24 py-6 border-b border-neutral-800 mb-6">
+          <ul className="flex items-center gap-4">
+            <li>
+              <Link href="/" className="font-bold text-lg">
+                <Subheading1>MergeBoard</Subheading1>
+              </Link>
+            </li>
+            <li>
+              <Link href="/pulls/open">Open PRs</Link>
+            </li>
+            <li>
+              <Link href="/pulls/closed">Closed PRs</Link>
+            </li>
+          </ul>
+        </nav>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
