@@ -17,8 +17,8 @@ const Card = ({
   footer,
   className,
 }: {
-  title: string;
-  description?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
   action?: React.ReactNode;
   content?: React.ReactNode;
   footer?: React.ReactNode;

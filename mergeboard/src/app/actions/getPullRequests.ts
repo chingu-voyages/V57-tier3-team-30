@@ -2,7 +2,9 @@
 
 import octokit from "."
 import { components } from "@octokit/openapi-types";
+
 type Pull = components["schemas"]["pull-request"]
+
 const DEFAULTS = {
   owner: "chingu-voyages",
   repo: "V57-tier3-team-30",
