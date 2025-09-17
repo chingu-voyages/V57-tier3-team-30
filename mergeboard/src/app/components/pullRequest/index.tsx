@@ -28,16 +28,18 @@ export const PullRequest = ({
     <Card
       className="w-md"
       title={
-        <Subheading1>
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline"
-          >
-            #{PRNumber}: {title}
-          </a>
-        </Subheading1>
+        <div className="min-h-18 line-clamp-2 overflow-hidden text-ellipsis">
+          <Subheading1>
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              #{PRNumber}: {title}
+            </a>
+          </Subheading1>
+        </div>
       }
       action={
         <Badge className="bg-primary dark:bg-primary [&>svg]:size-5 rounded-3xl px-4 py-1">
