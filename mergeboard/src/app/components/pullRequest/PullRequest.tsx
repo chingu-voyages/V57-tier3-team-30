@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import Card from "../card";
 import { Body2, Subheading1 } from "../typography";
 import { Button } from "@/components/ui/button";
-import { Divide, GitPullRequestIcon } from "lucide-react";
+import { GitPullRequestIcon } from "lucide-react";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { Divider } from "../divider";
@@ -17,6 +17,7 @@ export const PullRequest = ({
   url,
   reviewers = [],
   lastEvent,
+  lastEventAt,
 }: {
   PRNumber: number;
   title: string;
@@ -26,6 +27,7 @@ export const PullRequest = ({
   url: string;
   reviewers?: string[];
   lastEvent?: string;
+  lastEventAt?: string;
 }) => {
   return (
     <Card
@@ -52,10 +54,10 @@ export const PullRequest = ({
       }
       content={
         <div>
+          <Divider />
           <Body2>
             Created by <span className="font-bold">{CreatedBy}</span>
           </Body2>
-          <Divider />
           <Body2>
             Created on {dayjs(CreatedAt).utc().format("D/M/YYYY HH:mm")}
           </Body2>
@@ -70,6 +72,14 @@ export const PullRequest = ({
           <Body2>
             Last Event:{" "}
             <span className="font-bold italic">{lastEvent || "N/A"}</span>
+          </Body2>
+          <Body2>
+            Last Event At:{" "}
+            <span className="font-bold italic">
+              {lastEventAt
+                ? dayjs(lastEventAt).utc().format("D/M/YYYY HH:mm")
+                : "N/A"}
+            </span>
           </Body2>
           <Divider />
         </div>
