@@ -5,9 +5,7 @@ import { components } from "@octokit/openapi-types";
 
 type Pull = components["schemas"]["pull-request"]
 
-
-
-function getPullRequests({
+async function getPullRequests({
   owner,
   repo,
   sort,
@@ -21,10 +19,14 @@ function getPullRequests({
   state?: "open" | "closed" | "all"
   per_page?: number
   page?: number
-}): Promise<{ data: Pull[] }> {
-  const queryParams = `?sort=${sort}&state=${state}&per_page=${per_page}&page=${page}`
-  const pullRequests = octokit.request(`GET /repos/${owner}/${repo}/pulls${queryParams}`)
-  return pullRequests
+}): Promise<Pull[]> {
+  const pullRequests = await octokit.request(`GET /repos/${owner}/${repo}/pulls`, {
+    sort,
+    state,
+    per_page,
+    page,
+  })
+  return pullRequests.data
 }
 
 export { getPullRequests }
