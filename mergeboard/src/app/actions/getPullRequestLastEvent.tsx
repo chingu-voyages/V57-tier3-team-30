@@ -16,8 +16,9 @@ export async function getLastPullRequestEvent({
   );
 
   // Filter for relevant actions
-  const relevant = timeline.filter(({ event }) => {
-    if (!event) return false;
+  const relevant = timeline.filter((data) => {
+    if (!data.event) return false;
+
     return [
       "opened",
       "commented",
@@ -25,10 +26,13 @@ export async function getLastPullRequestEvent({
       "review_requested",
       "review_request_removed",
       "reviewed",
-    ].includes(event);
+    ].includes(data.event);
   });
 
   const lastEvent = relevant[relevant.length - 1];
 
-  return lastEvent?.event?.replace(/_/g, " ");
+  return {
+    lastEvent: lastEvent?.event?.replace(/_/g, " "),
+    createdAt: "created_at" in lastEvent ? lastEvent.created_at : undefined,
+  };
 }
