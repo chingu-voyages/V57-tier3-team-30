@@ -26,11 +26,11 @@ const Header: React.FC = () => {
     <header className="bg-primary-white-100 dark:bg-primary-black-100 border-b border-[#D9D9D9] py-[15px] px-[15px]  flex flex-col justify-between sm:flex-row  sm:gap-[20px]  items-center  sm:items-start">
       <div className="">
         <Image
-          src="/logo-dark.png"
+          src="/logo.png"
           alt="Logo"
           className="hidden dark:block"
-          width={454}
-          height={176}
+          width={350}
+          height={350}
         />
         <Image
           src="/logo-white.png"
