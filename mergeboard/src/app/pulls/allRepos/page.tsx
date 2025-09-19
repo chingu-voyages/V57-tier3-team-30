@@ -1,5 +1,5 @@
 "use client"
-import { getRepos, getReposByOwner, Repo } from '@/app/actions/getRepos';
+import { getUserRepos, Repo } from '@/app/actions/githubHelpers';
 import SearchBar from '@/app/components/searchBar';
 import { useState } from 'react';
 
@@ -10,8 +10,8 @@ export default function AllRepos () {
   const handleSubmit = async () => {
     try {
       setLoading(true)
-      const res = await getReposByOwner({owner: val})
-      setRepos(res)
+      const res = await getUserRepos(val)
+      setRepos(res.data)
       setLoading(false)
     } catch (error) {
       console.log(error)
