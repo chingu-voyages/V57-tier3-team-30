@@ -9,8 +9,6 @@
   --bg-light: #ffffff;
   --fg-light: #010409;
 
-  --bg-dark: #010409;
-  --fg-dark: #ffffff;
 
   /* active tokens (can be referenced throughout the app) */
 
@@ -78,6 +76,11 @@
 
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
+
+.dark {
+  --background: oklch(--foreground); 
+  --foreground: oklch(--background); 
+  /* ... other overrides for dark mode ... */}
 
 @theme inline {
 /* Primary */
