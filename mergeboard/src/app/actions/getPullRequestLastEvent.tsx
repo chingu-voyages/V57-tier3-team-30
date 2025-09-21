@@ -1,6 +1,6 @@
 export const revalidate = 0;
-import octokit from ".";
 // no caching
+import octokit from ".";
 export async function getLastPullRequestEvent({
   owner,
   repo,
@@ -13,7 +13,7 @@ export async function getLastPullRequestEvent({
   // Get timeline events for the PR
   const { data: timeline } = await octokit.request(
     "GET /repos/{owner}/{repo}/issues/{issue_number}/timeline",
-    { owner, repo, issue_number: pull_number }
+    { owner, repo, issue_number: pull_number, cache: "no-store" }
   );
 
   // Filter for relevant actions

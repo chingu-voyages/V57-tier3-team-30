@@ -25,6 +25,7 @@ async function getPullRequests({
     state,
     per_page,
     page,
+    cache: 'no-store'
   })
   return pullRequests.data
 }
