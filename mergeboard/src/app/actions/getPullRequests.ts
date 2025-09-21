@@ -1,5 +1,6 @@
 'use server'
-
+export const revalidate = 0
+// no caching
 import octokit from "."
 import { components } from "@octokit/openapi-types";
 
@@ -25,7 +26,6 @@ async function getPullRequests({
     state,
     per_page,
     page,
-    cache: 'no-store'
   })
   return pullRequests.data
 }
