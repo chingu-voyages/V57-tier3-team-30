@@ -1,6 +1,4 @@
 import octokit from ".";
-export const revalidate = 0;
-// no caching
 export async function getLastPullRequestEvent({
   owner,
   repo,
