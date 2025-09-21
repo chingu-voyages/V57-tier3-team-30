@@ -19,7 +19,6 @@ export async function getLastPullRequestEvent({
   // Filter for relevant actions
   const relevant = timeline.filter((data) => {
     if (!data.event) return false;
-    console.log(data.event);
 
     return [
       "opened",
