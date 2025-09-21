@@ -1,3 +1,5 @@
+export const revalidate = 0; // no caching
+
 import { getLastPullRequestEvent } from "@/app/actions/getPullRequestLastEvent";
 import { getPullRequests } from "@/app/actions/getPullRequests";
 import { PullRequest } from "@/app/components/pullRequest";

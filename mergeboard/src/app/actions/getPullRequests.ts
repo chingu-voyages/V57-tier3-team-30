@@ -1,5 +1,3 @@
-export const revalidate = 0
-// no caching
 import octokit from "."
 import { components } from "@octokit/openapi-types";
 
