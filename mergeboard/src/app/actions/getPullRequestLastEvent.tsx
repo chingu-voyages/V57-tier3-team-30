@@ -1,5 +1,5 @@
-import octokit from ".";
 export const revalidate = 0;
+import octokit from ".";
 // no caching
 export async function getLastPullRequestEvent({
   owner,
@@ -19,7 +19,6 @@ export async function getLastPullRequestEvent({
   // Filter for relevant actions
   const relevant = timeline.filter((data) => {
     if (!data.event) return false;
-    console.log(data.event);
 
     return [
       "opened",
