@@ -1,5 +1,6 @@
 import octokit from ".";
-
+export const revalidate = 0;
+// no caching
 export async function getLastPullRequestEvent({
   owner,
   repo,
@@ -29,6 +30,9 @@ export async function getLastPullRequestEvent({
     ].includes(data.event);
   });
 
+  if (relevant.length === 0) {
+    return { lastEvent: "No events found", createdAt: undefined };
+  }
   const lastEvent = relevant[relevant.length - 1];
 
   return {
