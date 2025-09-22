@@ -1,6 +1,5 @@
 import octokit from ".";
 import { unstable_noStore } from "next/cache";
-
 export async function getLastPullRequestEvent({
   owner,
   repo,
