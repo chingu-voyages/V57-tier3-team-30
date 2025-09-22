@@ -4,8 +4,10 @@ import { getLastPullRequestEvent } from "@/app/actions/getPullRequestLastEvent";
 import { getPullRequests } from "@/app/actions/getPullRequests";
 import { PullRequest } from "@/app/components/pullRequest";
 import { DEFAULT_REPO } from "@/app/constants";
+import { unstable_noStore } from "next/cache";
 
 export default async function PullRequests() {
+  unstable_noStore();
   const pullsWithEvents: (Awaited<
     ReturnType<typeof getPullRequests>
   >[number] & { lastEvent?: string; createdAt?: string })[] = [];

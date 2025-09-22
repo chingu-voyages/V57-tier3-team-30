@@ -1,4 +1,5 @@
 import octokit from ".";
+import { unstable_noStore } from "next/cache";
 export async function getLastPullRequestEvent({
   owner,
   repo,
@@ -8,6 +9,7 @@ export async function getLastPullRequestEvent({
   repo: string;
   pull_number: number;
 }) {
+  unstable_noStore();
   // Get timeline events for the PR
   const { data: timeline } = await octokit.request(
     "GET /repos/{owner}/{repo}/issues/{issue_number}/timeline",
