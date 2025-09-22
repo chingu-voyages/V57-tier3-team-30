@@ -1,5 +1,6 @@
 import octokit from "."
 import { components } from "@octokit/openapi-types";
+import { unstable_noStore } from "next/cache";
 
 type Pull = components["schemas"]["pull-request"]
 
@@ -18,6 +19,7 @@ async function getPullRequests({
   per_page?: number
   page?: number
 }): Promise<Pull[]> {
+  unstable_noStore();
   const pullRequests = await octokit.request(`GET /repos/${owner}/${repo}/pulls`, {
     sort,
     state,
