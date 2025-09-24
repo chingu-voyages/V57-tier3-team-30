@@ -12,7 +12,8 @@ import { getPullRequests, mapPRs, MappedPR } from "@/app/actions/getPullRequests
 export default async function OpenPRsPage() {
   const rawPrs = await getPullRequests({
     owner: DEFAULT_REPO.owner,
-    repo: DEFAULT_REPO.repo
+    repo: DEFAULT_REPO.repo,
+    state: "open"
   });
   const prs: MappedPR[] = mapPRs(rawPrs);
   return (
