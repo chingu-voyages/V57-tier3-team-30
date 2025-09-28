@@ -1,7 +1,5 @@
 "use client";
 
-import { Divider } from "../divider";
-
 export const PullRequestSkeleton = () => {
   return (
     <div
@@ -35,10 +33,10 @@ export const PullRequestSkeleton = () => {
 
 export const PullRequestSkeletons = () => {
   return (
-    <>
+    <ul className="flex gap-8 flex-wrap">
       {Array.from({ length: 6 }).map((_, index) => (
         <PullRequestSkeleton key={index} />
       ))}
-    </>
+    </ul>
   );
 };

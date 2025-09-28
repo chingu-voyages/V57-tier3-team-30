@@ -7,6 +7,7 @@ import {
   MergeIcon,
 } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -27,13 +28,15 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <Button
-              size="lg"
-              className="rounded-[40px] px-4 py-2 bg-secondary-green-700 font-semibold"
-            >
-              <GithubIcon />
-              Start Tracking here
-            </Button>
+            <Link href="/pulls/open">
+              <Button
+                size="lg"
+                className="rounded-[40px] px-4 py-2 bg-secondary-green-700 font-semibold cursor-pointer"
+              >
+                <GithubIcon />
+                Start Tracking here
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
