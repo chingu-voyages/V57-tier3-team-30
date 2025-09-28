@@ -1,11 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { PullRequest } from "../pullRequest";
+import { PullsWithEvents } from "@/app/actions/getPullRequests";
 
-type PullRequestData = React.ComponentProps<typeof PullRequest>;
 interface SaveSnapshotButtonProps {
-  prs: PullRequestData[];
+  prs: PullsWithEvents;
   repoName: string;
 }
 
@@ -28,7 +27,7 @@ export function SaveSnapshotButton({ prs, repoName }: SaveSnapshotButtonProps) {
   };
 
   return (
-    <Button onClick={handleSave}>
+    <Button onClick={handleSave} className="cursor-pointer">
       Save Snapshot
     </Button>
   );

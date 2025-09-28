@@ -16,6 +16,10 @@ export type MappedPR = {
   lastEvent?: string;
   lastEventAt?: string;
 };
+export type PullsWithEvents = (Awaited<
+    ReturnType<typeof getPullRequests>
+  >[number] & { lastEvent?: string; createdAt?: string })[]
+
 
 async function getPullRequests({
   owner,
