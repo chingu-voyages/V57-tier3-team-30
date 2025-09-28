@@ -17,11 +17,10 @@ export default async function OpenPRsPage() {
         <BookMarkedIcon className="inline size-6" />
         <Subheading2 className="">{`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}</Subheading2>
       </div>
-      <ul className="flex gap-8 flex-wrap">
-        <Suspense fallback={<PullRequestSkeletons />}>
-          <PullRequests />
-        </Suspense>
-      </ul>
+
+      <Suspense fallback={<PullRequestSkeletons />}>
+        <PullRequests />
+      </Suspense>
     </PageWrapper>
   );
 }
