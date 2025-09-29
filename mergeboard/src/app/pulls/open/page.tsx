@@ -17,7 +17,6 @@ export default async function OpenPRsPage() {
         <BookMarkedIcon className="inline size-6" />
         <Subheading2 className="">{`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}</Subheading2>
       </div>
-
       <Suspense fallback={<PullRequestSkeletons />}>
         <PullRequests />
       </Suspense>
