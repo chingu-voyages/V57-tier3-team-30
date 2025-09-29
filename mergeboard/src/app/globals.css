@@ -4,10 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light mode (default) */
-  /* mode-specific tokens */
-  --bg-light: #ffffff;
-  --fg-light: #010409;
 
 
   /* active tokens (can be referenced throughout the app) */
@@ -78,7 +74,7 @@
 }
 
 .dark {
-  --background: oklch(--foreground); 
+  --background: #0D1117; 
   --foreground: oklch(--background); 
   /* ... other overrides for dark mode ... */}
 
@@ -138,13 +134,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-  /* Dark mode: flip to dark tokens */
-    --background: var(--bg-dark);
-    --foreground: var(--fg-dark);
-  }
-}
 
 
 
