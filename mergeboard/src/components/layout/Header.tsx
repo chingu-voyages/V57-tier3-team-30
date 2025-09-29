@@ -7,6 +7,7 @@ interface NavLink {
 }
 
 const navigationLinks: NavLink[] = [
+  { href: "/", label: "Home" },
   { href: "/pulls/open", label: "Open PRs" },
   { href: "/pulls/closed", label: "Closed PRs" },
 ];
