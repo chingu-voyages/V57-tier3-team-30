@@ -2,32 +2,25 @@
 
 export const PullRequestSkeleton = () => {
   return (
-    <div
-      className="max-w-sm rounded-xl border border-gray-300 p-6 opacity-20"
-      style={{ width: "450px", height: "385px" }}
-    >
-      <div className="flex animate-pulse space-x-4">
-        <div className="flex-1 space-y-6 py-1">
-          <div className="flex gap-4 items-center">
-            <div className="w-full h-6 rounded bg-gray-200"></div>
-            <div className="w-36 h-8 rounded-full bg-gray-300"></div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="col-span-2 h-6 rounded bg-gray-200"></div>
-              <div className="col-span-1 h-6 rounded bg-gray-200"></div>
-            </div>
-            <div className="col-span-2 h-1 rounded bg-gray-200"></div>
-            <div className="h-6 rounded bg-gray-200"></div>
-            <div className="col-span-2 h-1 rounded bg-gray-200"></div>
-            <div className="col-span-1 h-6 rounded bg-gray-200"></div>
-            <div className="col-span-2 h-1 rounded bg-gray-200"></div>
-            <div className="col-span-1 h-6 rounded bg-gray-200"></div>
-          </div>
+   <>
+      <div className="bg-primary-black-200 p-4">
+        <div className="flex items-center py-4">
+          <div className="animate-pulse bg-gray-800 rounded-md h-10 w-48"></div>
+          <button className="animate-pulse bg-gray-800 rounded-md h-10 px-4 ml-2" aria-label="Clear button"></button>
+        </div>
+        <div className="rounded-md border">
+          <div className="animate-pulse bg-gray-800 h-12 w-full"></div>
+          <div className="animate-pulse bg-gray-800 h-10 w-full mt-2"></div>
+          <div className="animate-pulse bg-gray-800 h-10 w-full mt-2"></div>
+          <div className="animate-pulse bg-gray-800 h-10 w-full mt-2"></div>
+        </div>
+        <div className="flex items-center justify-center space-x-2 py-4">
+          <button className="animate-pulse bg-gray-800 rounded-md h-10 px-4" aria-label="Previous button"></button>
+          <button className="animate-pulse bg-gray-800 rounded-md h-10 px-4" aria-label="Page number button"></button>
+          <button className="animate-pulse bg-gray-800 rounded-md h-10 px-4" aria-label="Next button"></button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

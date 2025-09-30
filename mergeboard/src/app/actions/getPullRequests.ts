@@ -2,8 +2,8 @@ import octokit from "."
 import { components } from "@octokit/openapi-types";
 import { unstable_noStore } from "next/cache";
 
-type Pull = components["schemas"]["pull-request"]
-
+export type Pull = components["schemas"]["pull-request"]
+export type requested_reviewers = components["schemas"]["simple-user"]
 
 export type MappedPR = {
   PRNumber: number;
@@ -12,16 +12,16 @@ export type MappedPR = {
   CreatedAt: string;
   status: "open" | "closed";
   url: string;
-  reviewers?: string[];
+  reviewers?: requested_reviewers[];
   lastEvent?: string;
   lastEventAt?: string;
 };
 export type PullsWithEvents = (Awaited<
-    ReturnType<typeof getPullRequests>
-  >[number] & { lastEvent?: string; createdAt?: string })[]
+  ReturnType<typeof getPullRequests>
+>[number] & { lastEvent?: string; createdAt?: string })[]
 
 
-async function getPullRequests({
+async function getPullRequests ({
   owner,
   repo,
   sort,
@@ -49,7 +49,7 @@ async function getPullRequests({
 
 
 // Helper to map raw PRs to the shape your components expect
-export function mapPRs(rawPRs: Pull[]): MappedPR[] {
+export function mapPRs (rawPRs: PullsWithEvents): MappedPR[] {
   return rawPRs.map(pr => ({
     PRNumber: pr.number,
     title: pr.title,
@@ -57,8 +57,8 @@ export function mapPRs(rawPRs: Pull[]): MappedPR[] {
     CreatedAt: pr.created_at,
     status: pr.state as "open" | "closed",
     url: pr.html_url,
-    reviewers: pr.requested_reviewers?.map(r => r.login) || [],
-    lastEvent: undefined,
+    reviewers: pr.requested_reviewers || [],
+    lastEvent: pr.lastEvent,
     lastEventAt: pr.updated_at,
   }));
 }
