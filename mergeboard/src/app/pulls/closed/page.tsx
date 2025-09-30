@@ -1,35 +1,15 @@
-// import { PageWrapper } from "@/app/components/layouts/PageWrapper";
-// import { Headline, Subheading2 } from "@/app/components/typography";
-// import { DEFAULT_REPO } from "@/app/constants";
-// import { BookMarkedIcon, GitPullRequestArrow } from "lucide-react";
-// import PullRequests from "./components/PullRequests";
-// import { Suspense } from "react";
-// import { PullRequestSkeletons } from "@/app/components/pullRequest";
-
-// export default async function ClosedPRsPage() {
-//   return (
-//     <PageWrapper>
-//       <div className="flex items-center gap-2 mb-24">
-//         <GitPullRequestArrow />
-//         <Headline>Closed Pull Requests</Headline>
-//       </div>
-//       <div className="flex items-center gap-1 mb-5">
-//         <BookMarkedIcon className="inline size-6" />
-//         <Subheading2 className="">{`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}</Subheading2>
-//       </div>
-//       <Suspense fallback={<PullRequestSkeletons />}>
-//         <PullRequests />
-//       </Suspense>
-//     </PageWrapper>
-//   );
-// }
 import { getPullRequests, mapPRs, Pull, PullsWithEvents} from "@/app/actions/getPullRequests"
 import { DEFAULT_REPO } from "@/app/constants"
-import { DataTable } from '../data-table'
-import { columns } from '../columns'
+import { DataTable } from '../open/components/data-table'
+import { columns } from '../open/components/columns'
 import { getLastPullRequestEvent } from '@/app/actions/getPullRequestLastEvent'
+import { unstable_noStore } from 'next/cache'
+import { GitPullRequestArrowIcon } from 'lucide-react'
+import { Headline } from '@/app/components/typography'
+import { PageWrapper } from '@/app/components/layouts/PageWrapper'
 
 export default async function PullRequestsPage() {
+  unstable_noStore();
   const pullsWithEvents: PullsWithEvents = [];
   const prs = await getPullRequests({
     owner: DEFAULT_REPO.owner,
@@ -52,10 +32,13 @@ export default async function PullRequestsPage() {
   const mappedPrs = mapPRs(pullsWithEvents)
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Open Pull Requests</h1>
+    <PageWrapper>
+       <div className="flex items-center gap-2 mb-8">
+        <GitPullRequestArrowIcon size={32}/>
+        <Headline>Closed Pull Requests</Headline>
+      </div>
       <DataTable columns={columns} data={mappedPrs} />
-    </div>
+    </PageWrapper>
   )
 }
 

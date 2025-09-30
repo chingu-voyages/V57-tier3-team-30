@@ -1,7 +1,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { MappedPR } from '../actions/getPullRequests'
+import { MappedPR } from '../../../actions/getPullRequests'
 import Link from 'next/link'
 
 
