@@ -45,11 +45,11 @@ export const columns: ColumnDef<MappedPR>[] = [
       const reviewers = row.original.reviewers
       return reviewers && reviewers.length > 0 ? (
         <div className="flex flex-wrap gap-1">
-          {reviewers.map((reviewer,id) => (
+          {reviewers.map((reviewer) => (
             <span
-              key={id}
+              key={reviewer.id}
               className="bg-gray-200 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
-              {reviewer}
+              {reviewer.login}
             </span>
           ))}
         </div>
