@@ -58,8 +58,8 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
           className="max-w-sm"
         />
         <Button type="button" variant="outline" onClick={handleClear}>
-        Clear
-      </Button>
+          Clear
+        </Button>
       </div>
       <div className="rounded-md border">
         <Table>
@@ -106,6 +106,16 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
         >
           Previous
         </Button>
+        {Array.from({ length: table.getPageCount() }).map((_, idx) => (
+          <Button
+            key={idx}
+            size="sm"
+            variant={table.getState().pagination.pageIndex === idx ? "pagination" : "transparent"}
+            onClick={() => table.setPageIndex(idx)}
+          >
+            {idx + 1}
+          </Button>
+        ))}
         <Button
           variant="outline"
           size="sm"
