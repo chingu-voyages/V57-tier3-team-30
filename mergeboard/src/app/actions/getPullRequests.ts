@@ -3,7 +3,7 @@ import { components } from "@octokit/openapi-types";
 import { unstable_noStore } from "next/cache";
 
 export type Pull = components["schemas"]["pull-request"]
-
+export type requested_reviewers = components["schemas"]["simple-user"]
 
 export type MappedPR = {
   PRNumber: number;
@@ -12,7 +12,7 @@ export type MappedPR = {
   CreatedAt: string;
   status: "open" | "closed";
   url: string;
-  reviewers?: string[];
+  reviewers?: requested_reviewers[];
   lastEvent?: string;
   lastEventAt?: string;
 };
@@ -57,7 +57,7 @@ export function mapPRs (rawPRs: PullsWithEvents): MappedPR[] {
     CreatedAt: pr.created_at,
     status: pr.state as "open" | "closed",
     url: pr.html_url,
-    reviewers: pr.requested_reviewers?.map(r => r.login) || [],
+    reviewers: pr.requested_reviewers || [],
     lastEvent: pr.lastEvent,
     lastEventAt: pr.updated_at,
   }));
