@@ -32,6 +32,8 @@ export default function ChatWindow() {
         ]);
       }
     } catch (error) {
+      console.log(error);
+
       setMessages((prev) => [
         ...prev,
         { role: "ai", text: "Sorry, I couldn't connect to the assistant." },
