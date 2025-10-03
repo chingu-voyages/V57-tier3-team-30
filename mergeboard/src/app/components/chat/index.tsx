@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import aiChat from "@/app/actions/aiChat";
 import { MessageSquare, Minus, Send } from "lucide-react";
 
@@ -11,6 +11,15 @@ export default function ChatWindow() {
   );
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -89,6 +98,7 @@ export default function ChatWindow() {
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
       <div className="flex p-3 border-t">
         <input
