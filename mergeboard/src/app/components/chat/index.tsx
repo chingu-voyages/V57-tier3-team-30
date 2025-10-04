@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import aiChat from "@/app/actions/aiChat";
-import { MessageSquare, Minus, Send } from "lucide-react";
+import { Minus, Send, Stars } from "lucide-react";
+import { useClickAway } from "@uidotdev/usehooks";
 
 export default function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,14 +13,26 @@ export default function ChatWindow() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const ref = useClickAway<HTMLDivElement>(() => {
+    setIsOpen(false);
+  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
+    inputRef.current?.focus();
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus();
+    }
+  }, [isOpen]);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -59,13 +72,16 @@ export default function ChatWindow() {
         className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-transform hover:scale-110"
         aria-label="Open chat"
       >
-        <MessageSquare size={24} />
+        <Stars size={24} />
       </button>
     );
   }
 
   return (
-    <div className="fixed bottom-4 right-4 w-96 bg-white shadow-xl rounded-lg flex flex-col h-[500px]">
+    <div
+      className="fixed bottom-4 right-4 w-96 bg-white shadow-xl rounded-lg flex flex-col h-[500px]"
+      ref={ref}
+    >
       <div className="flex justify-between items-center p-3 bg-gray-50 border-b rounded-t-lg">
         <h3 className="font-bold text-neutral-900">AI Assistant</h3>
         <button
@@ -102,6 +118,7 @@ export default function ChatWindow() {
       </div>
       <div className="flex p-3 border-t">
         <input
+          ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
