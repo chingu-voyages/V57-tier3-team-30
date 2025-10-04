@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import aiChat from "@/app/actions/aiChat";
 import { Minus, Send, Stars } from "lucide-react";
 import { useClickAway } from "@uidotdev/usehooks";
+import { Button } from "@/components/ui/button";
 
 export default function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,13 +68,14 @@ export default function ChatWindow() {
 
   if (!isOpen) {
     return (
-      <button
+      <Button
+        size={"icon"}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-transform hover:scale-110"
+        className="size-12 fixed bottom-4 right-4 bg-primary text-white p-3 rounded-full transition-transform hover:scale-110 cursor-pointer"
         aria-label="Open chat"
       >
-        <Stars size={24} />
-      </button>
+        <Stars className="size-6" />
+      </Button>
     );
   }
 
@@ -84,13 +86,15 @@ export default function ChatWindow() {
     >
       <div className="flex justify-between items-center p-3 bg-gray-50 border-b rounded-t-lg">
         <h3 className="font-bold text-neutral-900">AI Assistant</h3>
-        <button
+        <Button
+          size={"icon"}
+          variant={"ghost"}
           onClick={() => setIsOpen(false)}
-          className="text-gray-500 hover:text-gray-800"
+          className="text-gray-500 hover:text-gray-800 cursor-pointer"
           aria-label="Minimize chat"
         >
           <Minus size={20} />
-        </button>
+        </Button>
       </div>
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {messages.map((m, i) => (
@@ -126,13 +130,13 @@ export default function ChatWindow() {
           placeholder="Ask me anything..."
           disabled={isLoading}
         />
-        <button
+        <Button
           onClick={sendMessage}
-          className="bg-blue-500 text-white px-4 rounded-r-md hover:bg-blue-600 disabled:bg-blue-300"
+          className=" text-white rounded-l-none h-full cursor-pointer"
           disabled={isLoading}
         >
-          <Send size={20} />
-        </button>
+          <Send />
+        </Button>
       </div>
     </div>
   );
