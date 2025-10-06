@@ -5,6 +5,7 @@ import aiChat from "@/app/actions/aiChat";
 import { Minus, Send, Stars } from "lucide-react";
 import { useClickAway } from "@uidotdev/usehooks";
 import { Button } from "@/components/ui/button";
+import ReactMarkdown from "react-markdown";
 
 export default function ChatWindow() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,20 +14,23 @@ export default function ChatWindow() {
   );
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const lastMessageRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const ref = useClickAway<HTMLDivElement>(() => {
     setIsOpen(false);
   });
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToLastMessage = () => {
+    lastMessageRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   useEffect(() => {
     inputRef.current?.focus();
-    scrollToBottom();
+    scrollToLastMessage();
   }, [messages]);
 
   useEffect(() => {
@@ -100,13 +104,14 @@ export default function ChatWindow() {
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`p-2 rounded-lg max-w-[85%] text-neutral-950 ${
+            ref={i === messages.length - 1 ? lastMessageRef : null}
+            className={`p-2 rounded-lg max-w-[85%] text-neutral-950 prose prose-sm ${
               m.role === "user"
                 ? "bg-blue-100 self-end ml-auto"
                 : "bg-gray-100 self-start mr-auto"
             }`}
           >
-            {m.text}
+            <ReactMarkdown>{m.text}</ReactMarkdown>
           </div>
         ))}
         {isLoading && (
@@ -118,7 +123,6 @@ export default function ChatWindow() {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
       <div className="flex p-3 border-t">
         <input

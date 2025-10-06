@@ -36,11 +36,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <ThemeProvider>
           <Header />
-          {children}
+          <main className="flex-grow">{children}</main>
           <Footer />
           <ChatWindow />
         </ThemeProvider>
