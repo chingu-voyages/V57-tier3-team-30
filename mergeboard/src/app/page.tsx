@@ -1,4 +1,7 @@
 import { Button } from "@/components/ui/button";
+import EmailReminderPrompt from "./components/emailReminder/EmailReminderPrompt";
+import ReminderScheduler from "./components/emailReminder/ReminderScheduler";
+
 import {
   EyeIcon,
   FileJsonIcon,
@@ -40,6 +43,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <EmailReminderPrompt />
+      <ReminderScheduler />
+
       <h2 className="text-center text-4xl pb-20 pt-9 font-semibold">
         MergeBoard allows you to
       </h2>
