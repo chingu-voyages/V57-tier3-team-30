@@ -20,16 +20,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { SaveSnapshotButton } from "@/app/components/snapShots/SnapshotControls";
-import { DEFAULT_REPO } from "@/app/constants";
 import { MappedPR } from "@/app/actions/getPullRequests";
 
 interface DataTableProps {
   columns: ColumnDef<MappedPR>[];
   data: MappedPR[];
+  SnapshotButton?: React.ReactNode;
 }
 
-export function DataTable({ columns, data }: DataTableProps) {
+export function DataTable({ columns, data, SnapshotButton }: DataTableProps) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -45,7 +44,7 @@ export function DataTable({ columns, data }: DataTableProps) {
     initialState: { pagination: { pageSize: 5 } },
   });
 
-  const [author, setAuthor] = useState(
+  const [, setAuthor] = useState(
     (table.getColumn("CreatedBy")?.getFilterValue() as string) ?? ""
   );
   const handleClear = () => {
@@ -55,10 +54,7 @@ export function DataTable({ columns, data }: DataTableProps) {
 
   return (
     <div>
-      <SaveSnapshotButton
-        prs={data}
-        repoName={`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}
-      />
+      {SnapshotButton}
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter by author..."
