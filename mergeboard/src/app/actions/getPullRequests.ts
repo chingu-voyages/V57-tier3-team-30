@@ -16,7 +16,6 @@ export type MappedPR = {
   lastEvent?: string;
   lastEventAt?: string;
   labels?: { name: string }[];
-  
 };
 export type PullsWithEvents = (Awaited<
   ReturnType<typeof getPullRequests>
