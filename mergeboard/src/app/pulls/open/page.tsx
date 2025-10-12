@@ -1,6 +1,5 @@
 import {
   getPullRequests,
-  MappedPR,
   mapPRs,
   PullsWithEvents,
 } from "@/app/actions/getPullRequests";
@@ -12,6 +11,7 @@ import { unstable_noStore } from "next/cache";
 import { GitPullRequestArrow } from "lucide-react";
 import { Headline } from "@/app/components/typography";
 import { PageWrapper } from "@/app/components/layouts/PageWrapper";
+import { SaveSnapshotButton } from "@/app/components/snapShots/SnapshotControls";
 
 export default async function PullRequestsPage() {
   unstable_noStore();
@@ -42,7 +42,16 @@ export default async function PullRequestsPage() {
         <GitPullRequestArrow size={32} />
         <Headline>Open Pull Requests</Headline>
       </div>
-      <DataTable columns={columns} data={mappedPrs} />
+      <DataTable
+        columns={columns}
+        data={mappedPrs}
+        SnapshotButton={
+          <SaveSnapshotButton
+            prs={pullsWithEvents}
+            repoName={`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}
+          />
+        }
+      />
     </PageWrapper>
   );
 }
