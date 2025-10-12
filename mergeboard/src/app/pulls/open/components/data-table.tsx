@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   flexRender,
@@ -8,21 +8,29 @@ import {
   useReactTable,
   ColumnDef,
   ColumnFiltersState,
-} from "@tanstack/react-table"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Button } from '@/components/ui/button'
-import { useState } from 'react'
-import { Input } from '@/components/ui/input'
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { SaveSnapshotButton } from "@/app/components/snapShots/SnapshotControls";
+import { DEFAULT_REPO } from "@/app/constants";
+import { MappedPR } from "@/app/actions/getPullRequests";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+interface DataTableProps {
+  columns: ColumnDef<MappedPR>[];
+  data: MappedPR[];
 }
 
-export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TData, TValue>) {
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    []
-  )
+export function DataTable({ columns, data }: DataTableProps) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
@@ -35,7 +43,8 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
       columnFilters,
     },
     initialState: { pagination: { pageSize: 5 } },
-  })
+  });
+
   const [author, setAuthor] = useState(
     (table.getColumn("CreatedBy")?.getFilterValue() as string) ?? ""
   );
@@ -44,13 +53,18 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
     table.getColumn("CreatedBy")?.setFilterValue("");
   };
 
-
   return (
     <div>
+      <SaveSnapshotButton
+        prs={data}
+        repoName={`${DEFAULT_REPO.owner}/${DEFAULT_REPO.repo}`}
+      />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter by author..."
-          value={(table.getColumn("CreatedBy")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("CreatedBy")?.getFilterValue() as string) ?? ""
+          }
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             table.getColumn("CreatedBy")?.setFilterValue(event.target.value);
             setAuthor(event.target.value);
@@ -64,13 +78,16 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
       <div className="rounded-md border">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map(headerGroup => (
+            {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
+                {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -78,11 +95,14 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map(row => (
+              table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
-                  {row.getVisibleCells().map(cell => (
+                  {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -110,7 +130,11 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
           <Button
             key={idx}
             size="sm"
-            variant={table.getState().pagination.pageIndex === idx ? "pagination" : "transparent"}
+            variant={
+              table.getState().pagination.pageIndex === idx
+                ? "pagination"
+                : "transparent"
+            }
             onClick={() => table.setPageIndex(idx)}
           >
             {idx + 1}
@@ -126,5 +150,5 @@ export function DataTable<TData, TValue> ({ columns, data }: DataTableProps<TDat
         </Button>
       </div>
     </div>
-  )
+  );
 }

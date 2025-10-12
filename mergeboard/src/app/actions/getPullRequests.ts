@@ -15,6 +15,7 @@ export type MappedPR = {
   reviewers?: requested_reviewers[];
   lastEvent?: string;
   lastEventAt?: string;
+  labels?: { name: string }[];
 };
 export type PullsWithEvents = (Awaited<
   ReturnType<typeof getPullRequests>

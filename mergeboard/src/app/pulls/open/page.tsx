@@ -1,12 +1,17 @@
-import { getPullRequests, mapPRs,PullsWithEvents} from "@/app/actions/getPullRequests"
-import { DEFAULT_REPO } from "@/app/constants"
-import { DataTable } from './components/data-table'
-import { columns } from './components/columns'
-import { getLastPullRequestEvent } from '@/app/actions/getPullRequestLastEvent'
-import { unstable_noStore } from 'next/cache'
-import { GitPullRequestArrow } from 'lucide-react'
-import { Headline } from '@/app/components/typography'
-import { PageWrapper } from '@/app/components/layouts/PageWrapper'
+import {
+  getPullRequests,
+  MappedPR,
+  mapPRs,
+  PullsWithEvents,
+} from "@/app/actions/getPullRequests";
+import { DEFAULT_REPO } from "@/app/constants";
+import { DataTable } from "./components/data-table";
+import { columns } from "./components/columns";
+import { getLastPullRequestEvent } from "@/app/actions/getPullRequestLastEvent";
+import { unstable_noStore } from "next/cache";
+import { GitPullRequestArrow } from "lucide-react";
+import { Headline } from "@/app/components/typography";
+import { PageWrapper } from "@/app/components/layouts/PageWrapper";
 
 export default async function PullRequestsPage() {
   unstable_noStore();
@@ -15,9 +20,9 @@ export default async function PullRequestsPage() {
     owner: DEFAULT_REPO.owner,
     repo: DEFAULT_REPO.repo,
     state: "open",
-  })
+  });
 
- await Promise.all(
+  await Promise.all(
     prs.map(async (pr) => {
       const { lastEvent, createdAt } = await getLastPullRequestEvent({
         owner: DEFAULT_REPO.owner,
@@ -29,7 +34,7 @@ export default async function PullRequestsPage() {
     })
   );
   // map the prs to the shape expected by the table
-  const mappedPrs = mapPRs(pullsWithEvents)
+  const mappedPrs = mapPRs(pullsWithEvents);
 
   return (
     <PageWrapper>
@@ -39,5 +44,5 @@ export default async function PullRequestsPage() {
       </div>
       <DataTable columns={columns} data={mappedPrs} />
     </PageWrapper>
-  )
+  );
 }

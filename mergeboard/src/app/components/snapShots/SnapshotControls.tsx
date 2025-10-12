@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { PullsWithEvents } from "@/app/actions/getPullRequests";
+import { MappedPR } from "@/app/actions/getPullRequests";
 
 interface SaveSnapshotButtonProps {
-  prs: PullsWithEvents;
+  prs: MappedPR[];
   repoName: string;
 }
 
