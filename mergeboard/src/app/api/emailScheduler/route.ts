@@ -41,9 +41,9 @@ if (prLabels.includes("reminder-sent")) continue;
       
       const reviewers = pr.reviewers || [];
       const recipients = reviewers
-        .map((r: string) => ({
-          username: r,
-          email: teamEmails[r],
+        .map((r) => ({
+          username: r.login,
+          email: teamEmails[r.login],
         }))
         .filter((r) => r.email);
 
